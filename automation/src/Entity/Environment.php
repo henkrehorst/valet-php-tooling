@@ -47,6 +47,16 @@ class Environment
      */
     private $phpVersions;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $bintrayPackageUrl;
+
+    /**
+     * @ORM\Column(type="string", length=30)
+     */
+    private $packageRepository;
+
     public function __construct()
     {
         $this->phpVersions = new ArrayCollection();
@@ -131,6 +141,30 @@ class Environment
                 $phpVersion->setEnviroment(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getBintrayPackageUrl(): ?string
+    {
+        return $this->bintrayPackageUrl;
+    }
+
+    public function setBintrayPackageUrl(string $bintrayPackageUrl): self
+    {
+        $this->bintrayPackageUrl = $bintrayPackageUrl;
+
+        return $this;
+    }
+
+    public function getPackageRepository(): ?string
+    {
+        return $this->packageRepository;
+    }
+
+    public function setPackageRepository(string $packageRepository): self
+    {
+        $this->packageRepository = $packageRepository;
 
         return $this;
     }
